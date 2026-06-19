@@ -25,13 +25,13 @@ Operating as a high-performance, containerized asynchronous sidecar microservice
 The engine evaluates response groundedness using **Cosine Distance** between the generated response vector `V_R` and each retrieved context chunk vector `C_i`:
 
 ```
-$$\text{Cosine Distance} = 1 - \frac{V_R \cdot C_i}{\|V_R\| \, \|C_i\|}$$
+Cosine Distance = 1 − (V_R · C_i) / (‖V_R‖ · ‖C_i‖)
 ```
 
 The minimum distance across all context chunks is isolated:
 
 ```
-$$D_{\min} = \min_{i} \left\{ \text{Distance}(V_R, C_i) \right\}$$
+D_min = min { Distance(V_R, C_i) }  for all i
 ```
 
 If `D_min > τ` (default threshold `τ = 0.25`), the response is classified as **non-grounded** and triggers an immediate execution block.
